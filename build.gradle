@@ -13,7 +13,8 @@ project.ext {
         it.name == '1-hello-world' ||
         it.name == '1.1-hello-world-javascript' ||
         it.name == '2-eventbus' ||
-        it.name == '3-verticles'
+        it.name == '3-verticles' ||
+        it.name == '5-vertx-web'
     }
 }
 
@@ -45,6 +46,12 @@ configure(project.kotlinVertxProjects) {
         testCompile 'junit:junit:4.12'
         testCompile "org.jetbrains.kotlin:kotlin-test-junit"
     }
+
+//    kotlin {
+//        experimental {
+//            coroutines 'enable'
+//        }
+//    }
 
     vertx {
         vertxVersion = "3.5.1"
