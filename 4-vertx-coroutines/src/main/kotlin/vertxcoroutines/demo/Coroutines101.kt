@@ -21,15 +21,12 @@ fun createOneMillionThreads() {
 }
 
 suspend fun createOneMillionCoroutines() {
-    val oneMillionCoroutines = launch {
-        val listJob = List(1_000_000) {
-            launch {
-                esperaXSegundoSuspendendo(5)
-            }
+    val oneMillionCoroutines = List(1_000_000) {
+        launch {
+            esperaXSegundoSuspendendo(5)
         }
-        listJob.forEach { it.join() }
     }
-    oneMillionCoroutines.join()
+    oneMillionCoroutines.forEach { it.join() }
 }
 
 
