@@ -7,10 +7,17 @@ if (!JavaVersion.current().java8Compatible) {
                                     |  Refresh. Try again.'''.stripMargin())
 }
 
-include '1-hello-world'
-include '1.1-hello-world-javascript'
-include '2-eventbus'
-include '3-verticles'
-include '4-vertx-coroutines'
-include '5-vertx-web'
+//include '1-hello-world'
+//include '1.1-hello-world-javascript'
+//include '2-eventbus'
+//include '3-verticles'
+//include '4-vertx-coroutines'
+//include '5-vertx-web'
+include '01-hello-world-kotlin'
+include '01-hello-world-javascript'
+include '02-event-bus'
+include '03-verticles'
+include '04-vertx-web'
+include '05-resteasy-hsqldb'
+
 

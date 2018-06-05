@@ -1,0 +1,5 @@
+{
+  "coroutine-port" : 3000,
+  "hadouken-port": 4000,
+  "message" : "This is in a file =)"
+}

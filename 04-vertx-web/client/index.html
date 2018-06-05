@@ -1,0 +1,54 @@
+<http>
+    <head>
+        <title>Vert.x Showcase =)</title>
+    </head>
+
+    <body>
+
+        Hello World from Vert.x Web
+
+        <script src="js/sock.js"></script>
+        <script src="js/vertx-eventbus.js"></script>
+        <script>
+            const getAllMovies = function() {
+                return fetch("api/movies")
+                    .then(res => res.json())
+                    .then(res => res.movies)
+            }
+
+            const addMovie = function (movie) {
+                return fetch("api/movies", {
+                    method: 'POST',
+                    body : JSON.stringify(movie),
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    }
+                }).then(res => res.json())
+            }
+
+            const eb = new EventBus('/event-bus')
+
+            eb.enableReconnect(true)
+
+            eb.onopen = function() {
+                console.log("Aberta conexão com barramento de eventos")
+                console.log("Escutando localizações que o backend envia")
+                eb.registerHandler("feed.localizacoes", function(error, message) {
+                    if (error) {
+                        console.log("Não foi possível se registrar no serviço de localizações")
+                        console.log(error)
+                    }
+
+                    const position = JSON.parse(message.body)
+                    console.log(position)
+                })
+            }
+
+
+            eb.onclose = function() {
+                console.log("Perda de conexão com o backend")
+            }
+        </script>
+
+    </body>
+</http>

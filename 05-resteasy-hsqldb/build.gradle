@@ -1,0 +1,67 @@
+plugins {
+    id "java"
+    id "idea"
+    id "org.jetbrains.kotlin.jvm" version "1.2.41"
+    id "org.jetbrains.kotlin.kapt" version "1.2.41"
+    id "io.vertx.vertx-plugin" version "0.0.8"
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+vertx {
+    mainVerticle = "application.main.MainVerticle"
+    vertxVersion = "3.5.1"
+}
+
+dependencies {
+
+    compile "io.vertx:vertx-core"
+    compile "io.vertx:vertx-web"
+    compile "io.vertx:vertx-lang-kotlin"
+    compile 'io.vertx:vertx-lang-kotlin-coroutines'
+
+    // Gerador de código para os Serviços e Proxy de Serviços do Vert.x
+    compile 'io.vertx:vertx-service-proxy'
+    compileOnly 'io.vertx:vertx-codegen:3.5.1:processor'
+
+    // Define o processador de anotações como o gerador de código do Vert.x, para
+    // gerar o código automaticamente
+    // https://github.com/vert-x3/vertx-codegen/blob/master/README.md
+    kapt "io.vertx:vertx-codegen:3.5.1:processor"
+
+    // Dependências para adaptar o RestEasy ao Vertx
+    compile 'org.jboss.resteasy:resteasy-vertx:3.5.1.Final'
+
+    // Provider para integrar o Jackson ao Resteasy
+    compile 'org.jboss.resteasy:resteasy-jackson-provider:3.5.1.Final'
+
+    // Provider para validação de objetos de domínio ao Resteasy
+    compile 'javax.el:javax.el-api:3.0.0'
+    compile 'org.jboss.resteasy:resteasy-validator-provider-11:3.5.1.Final'
+
+    // Dependências HSQLDB + JDBC
+    compile 'org.hsqldb:hsqldb:2.4.0'
+    compile 'io.vertx:vertx-jdbc-client:3.5.1'
+
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.41"
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5'
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:0.22.5'
+
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}

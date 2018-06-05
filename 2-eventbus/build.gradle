@@ -1,4 +1,0 @@
-vertx {
-    mainVerticle = "demo.MainVerticle"
-}
-

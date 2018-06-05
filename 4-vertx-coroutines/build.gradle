@@ -1,4 +1,0 @@
-vertx {
-    mainVerticle = "vertxcoroutines.movieservice.MainVerticle"
-}
-
